@@ -1,6 +1,5 @@
 pipeline:
-  agent:
-    node: any
+  agent: any
   environment:
     ENV1: VAL1
     ENV2: VAL2
