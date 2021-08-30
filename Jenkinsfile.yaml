@@ -26,8 +26,8 @@ pipeline:
           - echo "Stage - Post - Always"
       options:
         - skipDefaultCheckout()
-      tools:
-        jdk: default
+      # tools:
+      #   jdk: default
       steps:
         - echo "Complex Stage"
     - stage: "Stage MultiLine String"
