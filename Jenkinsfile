@@ -7,7 +7,7 @@ pipeline {
                 MAVEN_SETTINGS = "${MAVEN_HOME}/conf/settings.xml"
             }
             steps {
-                sh '${MAVEN_HOME}/bin/mvn -s ${MAVEN_SETTINGS} -DskipTests clean package' 
+                bat '${MAVEN_HOME}/bin/mvn -s ${MAVEN_SETTINGS} -DskipTests clean package' 
             }
         }
     }
