@@ -14,7 +14,7 @@ pipeline {
             steps{
                 script{
                     git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
-                    def img = docker.build("${git_repo}:${env.BUILD_ID}", ".")
+                    def img = docker.build("${git_repo}:${env.BUILD_ID}")
                     print("img " +img)
                 }
             }
