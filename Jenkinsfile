@@ -13,7 +13,9 @@ pipeline {
         stage('Build Docker'){
             steps{
                 bat 'set'
-                bat 'echo $WORKSPACE ${env.BUILD_ID}'
+                git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
+                print('%WORKSPACE% git_repo')
+                print("%WORKSPACE% git_repo")
                 // docker.build("${env.}:${env.BUILD_ID}")
             }
         }
