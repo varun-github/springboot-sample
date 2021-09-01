@@ -11,11 +11,15 @@ pipeline {
             }
         }
         stage('Build Docker'){
-            script{
-                git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
-                print('%WORKSPACE% git_repo')
-                print("%WORKSPACE% git_repo")
-                // docker.build("${env.}:${env.BUILD_ID}")
+            steps{
+                echo "set"
+                script{
+                    git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
+                    print('%WORKSPACE% git_repo')
+                    print("%WORKSPACE% git_repo")
+                    // docker.build("${env.}:${env.BUILD_ID}")
+                }
+
             }
         }
     }
