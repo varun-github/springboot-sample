@@ -3,9 +3,9 @@ pipeline:
   environment:
     ENV1: VAL1
     ENV2: VAL2
-  parameters:
-    - "string(name: 'STRING_PARAM', defaultValue: 'DefaultValue', description: 'Description')"
-    - "text(name: 'TEXT_PARAM', defaultValue: 'DefaultValue', description: 'Description')"
+  # parameters:
+  #   - "string(name: 'STRING_PARAM', defaultValue: 'DefaultValue', description: 'Description')"
+  #   - "text(name: 'TEXT_PARAM', defaultValue: 'DefaultValue', description: 'Description')"
   options:
     - "timeout(time: 1, unit: 'HOURS')"
     - skipDefaultCheckout()
@@ -13,18 +13,29 @@ pipeline:
     - stage: Basic Stage
       steps:
         - echo "Basic Stage"
-    - stage: "Basic Stage - Script"
+    - stage: "Prerequisites"
       steps:
         script:
           - echo "Basic Stage - Script"
-    - stage: "Complex Stage"
+    - stage: "Build"
       agent:
         any:
+      tools:
+        - maven: 'Maven 3.3.9'
+          jdk: 'jdk8'
       environment:
-        STAGE_ENV: STAGE_VAL
+        - JAVA_HOME: /opt/apps/jdk/11/11.2.1
+          MAVEN_HOME: /opt/apps/maven/3.8.1
+          credentialsId: 'stash-jenkins-access-key'
+      steps: |
+        mvn -DskipTests=true -s /opt/build_settings/maven/maven_jfrog_settings.xml clean package
       post:
         always:
-          - echo "Stage - Post - Always"
+          - echo "Build Completed"
+        failure:
+          - /opt/bin/cloud_studio_telemetry send_error ${STACK_TRACE}
+        success:
+          - /opt/bin/cloud_studio_telemetry send_success 
       options:
         - skipDefaultCheckout()
       # tools:
