@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            environment{
+                MAVEN_HOME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3",
+                MAVEN_SETTINGS = "${MAVEN_HOME}/conf/settings.xml"
+            }
+            steps {
+                sh '${MAVEN_HOME}/bin/mvn -s ${MAVEN_SETTINGS} -DskipTests clean package' 
+            }
+        }
+    }
+}
