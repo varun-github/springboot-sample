@@ -1,6 +1,9 @@
 pipeline {
     agent any
     stages {
+        environment{
+            SERVICE_NAME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
+        }
         stage('Build') {
             environment{
                 MAVEN_HOME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
@@ -8,6 +11,13 @@ pipeline {
             }
             steps {
                 bat '%MAVEN_HOME%/bin/mvn -s %MAVEN_SETTINGS% -DskipTests clean package' 
+            }
+        }
+        stage('Build Docker'){
+            steps{
+                bat 'set'
+                bat 'echo $WORKSPACE ${env.BUILD_ID}'
+                // docker.build("${env.}:${env.BUILD_ID}")
             }
         }
     }
