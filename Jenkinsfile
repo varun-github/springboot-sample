@@ -1,9 +1,6 @@
 pipeline {
     agent any
     stages {
-        environment{
-            SERVICE_NAME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
-        }
         stage('Build') {
             environment{
                 MAVEN_HOME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
