@@ -15,8 +15,8 @@ pipeline {
                 echo "set"
                 script{
                     git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
-                    print('%WORKSPACE% git_repo')
-                    print("%WORKSPACE% git_repo")
+                    print('$WORKSPACE $git_repo')
+                    print("$env.WORKSPACE ${git_repo}")
                     // docker.build("${env.}:${env.BUILD_ID}")
                 }
 
