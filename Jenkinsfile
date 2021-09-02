@@ -21,7 +21,7 @@ pipeline {
                 bat 'aws ecr get-login-password  | docker login --username AWS --password-stdin %ECR_REGISTRY%'
                 script{
                     git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
-                    def img = docker.build("${env.ECR_REGISTRY}/${env.DOCKER_REPO_PREFIX}/${git_repo}:${env.BUILD_ID}")
+                    def img = docker.build("${env.ECR_REGISTRY}/${env.DOCKER_REPO_PREFIX}/${git_repo}:${env.BRANCH_NAME}.${env.BUILD_ID}")
                     img.push()
                 }
             }
