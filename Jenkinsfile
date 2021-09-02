@@ -15,7 +15,7 @@ pipeline {
                 AWS_PROFILE = "wintel"
                 AWS_REGION = "us-east-2"
                 ECR_REGISTRY = "667811466675.dkr.ecr.us-east-2.amazonaws.com"
-                DOCKER_REPO_PREFIX = "com.wipro.cloudstudio/microservices/springboot-sample"
+                DOCKER_REPO_PREFIX = "com.wipro.cloudstudio/microservices"
             }
             steps{
                 bat 'aws ecr get-login-password  | docker login --username AWS --password-stdin %ECR_REGISTRY%'
