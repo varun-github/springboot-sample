@@ -15,13 +15,13 @@ pipeline {
                 AWS_PROFILE = "wintel"
                 AWS_REGION = "us-east-2"
                 ECR_REGISTRY = "667811466675.dkr.ecr.us-east-2.amazonaws.com"
-                DOCKER_REPO = "com.wipro.cloudstudio/microservices/springboot-sample"
+                DOCKER_REPO_PREFIX = "com.wipro.cloudstudio/microservices/springboot-sample"
             }
             steps{
                 bat 'aws ecr get-login-password  | docker login --username AWS --password-stdin %ECR_REGISTRY%'
                 script{
                     git_repo = env.GIT_URL.replaceFirst(/.*\/([\w-]+).*/, '$1')
-                    def img = docker.build("${git_repo}:${env.BUILD_ID}")
+                    def img = docker.build("${env.ECR_REGISTRY}/${env.DOCKER_REPO_PREFIX}/${git_repo}:${env.BUILD_ID}")
                     img.push()
                 }
             }
