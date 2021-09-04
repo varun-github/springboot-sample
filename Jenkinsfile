@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                maven do: "package", withArgFile: ".jenkins/stage.build.env.json"
+                withMaven do: "package", withArgFile: ".jenkins/stage.build.env.json"
             }
             // environment{
             //     MAVEN_HOME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
