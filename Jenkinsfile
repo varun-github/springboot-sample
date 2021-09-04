@@ -2,7 +2,10 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            maven do: "package", withArgFile: ".jenkins/stage.build.env.json"
+            steps {
+                maven do: "package", withArgFile: ".jenkins/stage.build.env.json"
+            }
+        }
             // environment{
             //     MAVEN_HOME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
             //     MAVEN_SETTINGS = "E:/Varun/apps/apache-maven/apache-maven-3.6.3/conf/settings.xml"
