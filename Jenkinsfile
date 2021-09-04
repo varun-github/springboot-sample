@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withMaven this, [do: "package", withArgFile: ".jenkins/stage.build.env.json"]
+                step {
+                    withMaven this, [do: "package", withArgFile: ".jenkins/stage.build.env.json"]
+                }
             }
         }
         // stage('Build Docker'){
