@@ -11,6 +11,13 @@ pipeline {
                 }
             }
         }
+        stage('Build Docker') {
+            steps {
+                script {
+                    utils.docker do: "package", withArgFile: ".jenkins/stage.build.docker.env.json"
+                }
+            }
+        }
         // stage('Build Docker'){
         //     environment{
         //         AWS_PROFILE = "wintel"
