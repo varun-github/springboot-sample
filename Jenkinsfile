@@ -4,15 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withMaven do: "package", withArgFile: ".jenkins/stage.build.env.json"
+                withMaven do: "package", withArgFile: ".jenkins/stage.build.env.json", pipeline: this
             }
-            // environment{
-            //     MAVEN_HOME = "E:/Varun/apps/apache-maven/apache-maven-3.6.3"
-            //     MAVEN_SETTINGS = "E:/Varun/apps/apache-maven/apache-maven-3.6.3/conf/settings.xml"
-            // }
-            // steps {
-            //     bat '%MAVEN_HOME%/bin/mvn -s %MAVEN_SETTINGS% -DskipTests clean package' 
-            // }
         }
         // stage('Build Docker'){
         //     environment{
