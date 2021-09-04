@@ -14,7 +14,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    utils.docker do: "package", withArgFile: ".jenkins/stage.build.docker.env.json"
+                    utils.withDocker do: "package", withArgFile: ".jenkins/stage.build.docker.env.json"
                 }
             }
         }
