@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                step {
+                script {
                     withMaven this, [do: "package", withArgFile: ".jenkins/stage.build.env.json"]
                 }
             }
