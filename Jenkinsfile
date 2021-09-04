@@ -1,11 +1,13 @@
-@Library('jenkins-library') import static com.varun.jenkins.Utils.*
+@Library('jenkins-library') import com.varun.jenkins.Utils
+def utils = new Utils(this)
+
 pipeline {
     agent any
     stages {
         stage('Build') {
             steps {
                 script {
-                    withMaven this, [do: "package", withArgFile: ".jenkins/stage.build.env.json"]
+                    utils.withMaven [do: "package", withArgFile: ".jenkins/stage.build.env.json"]
                 }
             }
         }
