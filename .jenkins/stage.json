@@ -1,0 +1,20 @@
+{
+    "build_tool": "maven",
+    "build_tool_version": "3.8.1",
+    "build_tool_config_file_location": "E:/Varun/apps/apache-maven/apache-maven-3.6.3/conf/settings.xml",
+    "jdk_version": ">=8.0",
+    "environment": [
+        "JAVA_HOME=/opt/apps/jdk/11/11.2.1",
+        "MAVEN_HOME=/opt/apps/maven/3.8.1",
+        "credentialsId:'stash-jenkins-access-key'"
+    ],
+    "success": [
+        ""
+    ],
+    "failure": [
+        "echo 'failure'"
+    ],
+    "always": [
+        "echo 'callback'"
+    ]
+}

@@ -1,0 +1,32 @@
+pipeline:
+  agent: any
+  options:
+  - buildDiscarder(logRotator(numToKeepStr:'10'))
+  - 'timeout(time: 1, unit: ''HOURS'')'
+  stages:
+  - environment:
+      JAVA_HOME: /opt/apps/jdk/11/11.2.1
+      MAVEN_HOME: /opt/apps/maven/3.8.1
+    post:
+      always:
+      - echo 'callback'
+      failure:
+      - echo 'failure'
+      success:
+      - ''
+    stage: Build Java Springboot App
+    steps:
+      script:
+      - 'utils.withMaven do: "package", withArgFile: ".jenkins/stage.json"'
+  - environment: {}
+    post: {}
+    stage: Create Docker Image
+    steps:
+      script:
+      - 'utils.withDocker do: "build", withArgFile: ".jenkins/stage.build.docker.env.json"'
+  - environment: {}
+    post: {}
+    stage: Deploy to AWS Fargate
+    steps:
+      script:
+      - 'utils.withTerraform do: "fargateDeploy", withArgFile: ".jenkins/stage.terraform.fargate_deploy_vars.json"'

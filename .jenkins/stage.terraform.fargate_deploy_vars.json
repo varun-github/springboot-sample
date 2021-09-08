@@ -1,0 +1,31 @@
+{
+    "aws_region": "us-east-2",
+    "service_name": "springboot-sample",
+    "secrets": [
+        ""
+    ],
+    "port_mappings": [
+        {
+            "containerPort": 8080,
+            "hostPort": 8080,
+            "protocol": "tcp"
+        }
+    ],
+    "vpc_id": "",
+    "subnets": [
+        "subnet-83577ec9",
+        "subnet-a13fc8c8",
+        "subnet-ad1118d5"
+    ],
+    "security_groups": [
+        "sg-0136f86b134bf58f5"
+    ],
+    "lb_listener_arn": "abcd",
+    "listener_routing_rule_pattern": [
+        "/welcome"
+    ],
+    "cluster_name": "",
+    "environment": [
+        ""
+    ]
+}
