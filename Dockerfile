@@ -1,1 +1,4 @@
-"FROM openjdk:18-jdk-alpine3.13\n# VOLUME /tmp\nCOPY target/*.jar /app.jar\nENTRYPOINT [\"java\",\"-jar\",\"/app.jar\"]"
+FROM openjdk:18-jdk-alpine3.13
+# VOLUME /tmp
+COPY target/*.jar /app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
