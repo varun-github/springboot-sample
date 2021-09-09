@@ -19,18 +19,17 @@ pipeline {
       }
       post {
         always {
-          echo 'callback'
+          echo 'mandatory'
         }
         failure {
           echo 'failure'
         }
         success {
+          echo 'success'
         }
       }
     }
     stage('Create Docker Image') {
-      environment {
-      }
       steps {
         script {
           utils.withDocker do: "build", withArgFile: ".jenkins/stage.build.docker.env.json"
@@ -38,8 +37,6 @@ pipeline {
       }
     }
     stage('Deploy to AWS Fargate') {
-      environment {
-      }
       steps {
         script {
           utils.withTerraform do: "fargateDeploy", withArgFile: ".jenkins/stage.terraform.fargate_deploy_vars.json"

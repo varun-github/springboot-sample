@@ -9,24 +9,20 @@ pipeline:
       JAVA_HOME: /opt/apps/jdk/11/11.2.1
     post:
       always:
-      - echo 'callback'
+      - echo 'mandatory'
       failure:
       - echo 'failure'
       success:
-      - ''
+      - echo 'success'
     stage: Build Java Springboot App
     steps:
       script:
       - 'utils.withMaven do: "package", withArgFile: ".jenkins/stage.build.env.json"'
-  - environment: {}
-    post: {}
-    stage: Create Docker Image
+  - stage: Create Docker Image
     steps:
       script:
       - 'utils.withDocker do: "build", withArgFile: ".jenkins/stage.build.docker.env.json"'
-  - environment: {}
-    post: {}
-    stage: Deploy to AWS Fargate
+  - stage: Deploy to AWS Fargate
     steps:
       script:
       - 'utils.withTerraform do: "fargateDeploy", withArgFile: ".jenkins/stage.terraform.fargate_deploy_vars.json"'
