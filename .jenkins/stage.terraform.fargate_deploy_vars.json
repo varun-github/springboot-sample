@@ -1,9 +1,7 @@
 {
     "aws_region": "us-east-2",
     "service_name": "springboot-sample",
-    "secrets": [
-        ""
-    ],
+    "secrets": [],
     "port_mappings": [
         {
             "containerPort": 8080,
@@ -24,8 +22,5 @@
     "listener_routing_rule_pattern": [
         "/welcome"
     ],
-    "cluster_name": "",
-    "environment": [
-        ""
-    ]
+    "cluster_name": ""
 }

@@ -10,6 +10,7 @@ pipeline {
     stage('Build Java Springboot App') {
       environment {
         BUILD_ENV = 'DEVELOPMENT'
+        JAVA_HOME = '/opt/apps/jdk/11/11.2.1'
       }
       steps {
         script {
