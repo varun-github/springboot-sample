@@ -1,5 +1,6 @@
 @Library('jenkins-library') import com.varun.jenkins.Utils
-def utils = new Utils(this)pipeline {
+def utils = new Utils(this)
+pipeline {
   agent any
   options {
     buildDiscarder(logRotator(numToKeepStr:'10'))
