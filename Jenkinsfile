@@ -3,10 +3,10 @@ def utils = new Utils(this)
 
 pipeline {
     agent any
+    environment{
+        JIRA_EPIC_KEY = "CATE-1"
+    }
     stages {
-        environment{
-            JIRA_EPIC_KEY = "CATE-1"
-        }
         stage('Build') {
             environment{
                 JIRA_STORY_KEY = "CATE-12"
